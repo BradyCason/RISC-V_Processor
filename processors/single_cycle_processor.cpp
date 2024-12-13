@@ -61,14 +61,14 @@ class SingleCycleProcessor{
         ShiftLeft sl;
 
     public:
-        SingleCycleProcessor() : im(address, instruction), rf(instruction, write_data, reg_write, alu_in1, write_data),
-                cu(instruction, branch, mem_read, mem_to_reg, alu_op, mem_write, alu_src, reg_write),
-                ig(instruction, imm_out), alu(alu_in1, alu_in2, alu_control, zero, alu_result),
-                alu_mux(write_data, imm_out, alu_src, alu_in2), alu_ctrl(instruction, alu_op, alu_control),
-                dm(alu_result, write_data, mem_write, mem_read, read_data),
-                dm_mux(read_data, alu_result, mem_to_reg, write_data), pc(pc_in, address), adder1(4, address, pc0),
-                adder2(address, sl_out, pc1), pc_mux(pc0, pc1, pc_src, pc_in), and_gate(branch, zero, pc_src),
-                sl(imm_out, sl_out){
+        SingleCycleProcessor() : im(&address, &instruction), rf(&instruction, &write_data, &reg_write, &alu_in1, &write_data),
+                cu(&instruction, &branch, &mem_read, &mem_to_reg, &alu_op, &mem_write, &alu_src, &reg_write),
+                ig(&instruction, &imm_out), alu(&alu_in1, &alu_in2, &alu_control, &zero, &alu_result),
+                alu_mux(&write_data, &imm_out, &alu_src, &alu_in2), alu_ctrl(&instruction, &alu_op, &alu_control),
+                dm(&alu_result, &write_data, &mem_write, &mem_read, &read_data),
+                dm_mux(&read_data, &alu_result, &mem_to_reg, &write_data), pc(&pc_in, &address), adder1(4, &address, &pc0),
+                adder2(&address, &sl_out, &pc1), pc_mux(&pc0, &pc1, &pc_src, &pc_in), and_gate(&branch, &zero, &pc_src),
+                sl(&imm_out, &sl_out){
             pc.set(0);
         }
         void clock(){

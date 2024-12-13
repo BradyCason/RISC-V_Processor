@@ -13,13 +13,12 @@ class Wire{
                 values[i] = (val & (1ull << i)) != 0; // Check if the i-th bit is set
             }
         }
-        Wire(int a, int b, std::vector<bool> v){
+        Wire(int a, int b, const std::vector<bool>& v){
             if (a < b || a >= v.size() || b < 0) {
                 throw std::invalid_argument("Invalid range for slice");
             }
-            values.resize(a - b + 1);
             for (int i = a; i >= b; --i) {
-                values[a - i] = v[i]; // Fill in the sliced values
+                values.push_back(v[i]); // Fill in the sliced values
             }
         }
         Wire slice(int a, int b){

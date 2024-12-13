@@ -4,12 +4,12 @@
 
 class ShiftLeft{
     private:
-        Wire in;
-        Wire out;
+        Wire* in;
+        Wire* out;
     public:
-        ShiftLeft(Wire& i, Wire& o) : in(i), out(o) {}
+        ShiftLeft(Wire* i, Wire* o) : in(i), out(o) {}
         void execute(){
-            out = (in.value() << 1);
+            *out = (in->value() << 1);
         }
 };
 

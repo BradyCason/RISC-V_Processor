@@ -4,14 +4,14 @@
 
 class Mux{
     private:
-        Wire zero;
-        Wire one;
-        Wire control;
-        Wire output;
+        Wire* zero;
+        Wire* one;
+        Wire* control;
+        Wire* output;
     public:
-        Mux(Wire& z, Wire& o, Wire& ctrl, Wire& out) : zero(z), one(o), control(ctrl), output(o) {}
+        Mux(Wire* z, Wire* o, Wire* ctrl, Wire* out) : zero(z), one(o), control(ctrl), output(o) {}
         void execute(){
-            output = control.value() ? one : zero;
+            *output = control->value() ? *one : *zero;
         }
 };
 
